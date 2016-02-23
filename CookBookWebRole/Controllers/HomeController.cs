@@ -26,5 +26,12 @@ namespace CookBookWebRole.Controllers
 
             return View();
         }
+
+        public ActionResult Recipes()
+        {
+            ViewBag.Message = "All Recipes in JsGrid.";
+
+            return View();
+        }
     }
 }

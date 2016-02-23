@@ -25,7 +25,12 @@ namespace CookBookWebRole
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/jsgrid.min.css",
+                      "~/Content/jsgrid-theme.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jsgrid").Include(
+                        "~/Scripts/jsgrid.min.js"));
         }
     }
 }
