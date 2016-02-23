@@ -19,7 +19,7 @@ namespace CookBookCommon
 
         public string Title { get; set; }
 
-        [DisplayName("Calories (kcals)")]
+        [DisplayName("Calories (kcals/100g)")]
         public int Calories { get; set; }
         
         [StringLength(1000)]
@@ -36,7 +36,8 @@ namespace CookBookCommon
         
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime PostedDate { get; set; }
+        [DisplayName("Addition Date")]
+        public DateTime AdditionDate { get; set; }
         
         public Category? Category { get; set; }
         

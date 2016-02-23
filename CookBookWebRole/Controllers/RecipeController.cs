@@ -105,7 +105,7 @@ namespace CookBookWebRole.Controllers
                     imageBlob = await UploadAndSaveBlobAsync(imageFile);
                     recipe.ImageURL = imageBlob.Uri.ToString();
                 }
-                recipe.PostedDate = DateTime.Now;
+                recipe.AdditionDate = DateTime.Now;
                 db.Recipes.Add(recipe);
                 await db.SaveChangesAsync();
                 Trace.TraceInformation("Created RecipeId {0} in database", recipe.RecipeId);
@@ -143,7 +143,7 @@ namespace CookBookWebRole.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(
-            [Bind(Include = "RecipeId,Title,Calories,Description,ImageURL,ThumbnailURL,PostedDate,Category,CookingTime")] Recipe recipe,
+            [Bind(Include = "RecipeId,Title,Calories,Description,ImageURL,ThumbnailURL,AdditionDate,Category,CookingTime")] Recipe recipe,
             HttpPostedFileBase imageFile)
         {
             CloudBlockBlob imageBlob = null;
