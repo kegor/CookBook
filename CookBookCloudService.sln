@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "CookBookCloudService", "CookBookCloudService\CookBookCloudService.ccproj", "{53067B2E-0A64-443C-A3B9-9AC22BDA9A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBookWebRole", "CookBookWebRole\CookBookWebRole.csproj", "{96749199-6B21-49AC-BF2A-62DB6DB2118E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBookWorkerRole", "CookBookWorkerRole\CookBookWorkerRole.csproj", "{DC30A966-9CB8-4D4F-A7B4-BBF959C04E57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBookCommon", "CookBookCommon\CookBookCommon.csproj", "{6D18853B-2786-461B-8681-82E628855F37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53067B2E-0A64-443C-A3B9-9AC22BDA9A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53067B2E-0A64-443C-A3B9-9AC22BDA9A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53067B2E-0A64-443C-A3B9-9AC22BDA9A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53067B2E-0A64-443C-A3B9-9AC22BDA9A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96749199-6B21-49AC-BF2A-62DB6DB2118E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96749199-6B21-49AC-BF2A-62DB6DB2118E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96749199-6B21-49AC-BF2A-62DB6DB2118E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96749199-6B21-49AC-BF2A-62DB6DB2118E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC30A966-9CB8-4D4F-A7B4-BBF959C04E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC30A966-9CB8-4D4F-A7B4-BBF959C04E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC30A966-9CB8-4D4F-A7B4-BBF959C04E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC30A966-9CB8-4D4F-A7B4-BBF959C04E57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D18853B-2786-461B-8681-82E628855F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D18853B-2786-461B-8681-82E628855F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D18853B-2786-461B-8681-82E628855F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D18853B-2786-461B-8681-82E628855F37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

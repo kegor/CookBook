@@ -1,0 +1,29 @@
+﻿@using CookBookCommon;
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>CookBook</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            CookBook is a sample application that demonstrates how to create a
+            multi-tier ASP.NET application that runs in an Azure Cloud Service
+            or Web Site.
+        </p>
+        <p>The application uses SQL Database and Azure storage queues and blobs.</p>
+        <p>To get started choose a category to view or create a Recipe.</p>
+        <h2>Choose a category</h2>
+        <ul>
+            <li>@Html.ActionLink("Garnish", "Index", "Recipe", new { category = (int)Category.Garnish }, null)</li>
+            <li>@Html.ActionLink("Salad", "Index", "Recipe", new { category = (int)Category.Salad }, null)</li>
+            <li>@Html.ActionLink("Soup", "Index", "Recipe", new { category = (int)Category.Soup }, null)</li>
+            <li>@Html.ActionLink("All", "Index", "Recipe", null, null)</li>
+        </ul>
+        <h2>Or create a new ad</h2>
+        <p><a class="btn btn-default" href="@Url.Action("Create", "Recipe")">Create an Recipe</a></p>
+    </div>
+</div>
