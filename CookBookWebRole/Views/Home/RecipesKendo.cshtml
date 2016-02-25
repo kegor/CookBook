@@ -8,10 +8,14 @@
     $(document).ready(function () {
         $("#grid").kendoGrid({
             columns: [
-                { field: "Title", width: "100px" },
+                { field: "Title", width: "80px" },
                 { field: "Calories", width: "100px" },
-                { command: "edit", title: "Edit", width: "110px" },
-                { command: "destroy", title: "Delete", width: "110px" },
+                { field: "Description", width: "250px", editor: TextAreaEditor },
+                { field: "AdditionDate", title: "Addition Date", format: "{0:MM/dd/yyyy}", width: "130px" },
+                { field: "Category", width: "110px" },
+                { field: "CookingTime", title: "Cooking Time", width: "140px" },
+                { command: "edit", title: "Edit", width: "90px" },
+                { command: "destroy", title: "Delete", width: "100px" }
             ],
             pageable: true,
             pageSize: 5,
@@ -42,7 +46,11 @@
                         fields: {
                             RecipeId: { editable: false, type: "number" },
                             Title: { type: "string", nullable: false },
-                            Calories: { nullable: false, type: "number" }
+                            Calories: { nullable: false, type: "number" },
+                            Description: { type: "string" },
+                            AdditionDate: { type: "date" },
+                            Category: { type: "string" },
+                            CookingTime: { type: "string" }
                         }
                     },
                 },
@@ -88,6 +96,10 @@
             }
         });
     });
+
+    var TextAreaEditor = function (container, options) {
+        $('<textarea rows=10 cols=25 data-bind="value: ' + options.field + '"></textarea>').appendTo(container);
+    };
 
     function error(e) {
         if (e.errorThrown === "Bad Request") {
