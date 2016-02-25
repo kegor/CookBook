@@ -27,10 +27,13 @@ namespace CookBookWebRole
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/jsgrid.min.css",
-                      "~/Content/jsgrid-theme.min.css"));
+                      "~/Content/jsgrid-theme.min.css",
+                      "~/Content/kendo.common.min.css",
+                      "~/Content/kendo.default.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jsgrid").Include(
-                        "~/Scripts/jsgrid.min.js"));
+                        "~/Scripts/jsgrid.min.js",
+                        "~/Scripts/kendo.all.min.js"));
         }
     }
 }

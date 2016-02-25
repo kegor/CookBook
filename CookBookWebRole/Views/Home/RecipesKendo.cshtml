@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Recipes (Kendo)";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#grid").kendoGrid({
+            columns: [
+                { field: "Title", width: "100px" },
+                { field: "Calories", width: "100px" },
+                { command: "edit", title: "Edit", width: "110px" },
+                { command: "destroy", title: "Delete", width: "110px" },
+            ],
+            pageable: true,
+            pageSize: 5,
+            sortable: true,
+            filterable: true,
+            editable: "popup",
+            toolbar: ["create"],
+            dataSource: {
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 5,
+                type: "odata",
+                schema: {
+                    data: function (response) {
+                        if (response.value !== undefined)
+                            return response.value;
+                        else {
+                            delete response["odata.metadata"];
+                            return response;
+                        }
+                    },
+                    total: function (response) {
+                        return response['odata.count'];
+                    },
+                    model: {
+                        id: "RecipeId",
+                        fields: {
+                            RecipeId: { editable: false, type: "number" },
+                            Title: { type: "string", nullable: false },
+                            Calories: { nullable: false, type: "number" }
+                        }
+                    },
+                },
+                batch: false,
+                error: error,
+                transport: {
+                    create: {
+                        url: "/odata/RecipesOData",
+                        contentType: "application/json",
+                        type: "POST",
+                    },
+                    read: {
+                        url: "/odata/RecipesOData",
+                        dataType: "json",
+                        contentType: "application/json",
+
+                    },
+                    update: {
+                        url: function (record) {
+                            return "/odata/RecipesOData" + "(" + record.RecipeId + ")";
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "PUT",
+                        headers: { Prefer: "return-content" }
+                    },
+                    destroy: {
+                        url: function (record) {
+                            return "/odata/RecipesOData" + "(" + record.RecipeId + ")";
+                        },
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                    parametermap: function (data, operation) {
+                        console.log(data);
+                        if (operation === "read") {
+                            var parammap = kendo.data.transports.odata.parametermap(data);
+                            return parammap;
+                        }
+                        return json.stringify(data);
+                    }
+                }
+            }
+        });
+    });
+
+    function error(e) {
+        if (e.errorThrown === "Bad Request") {
+            var response = JSON.parse(e.xhr.responseText);
+            console.log(response);
+            if (response['odata.error'] != undefined) {
+                alert(response['odata.error'].message.value);
+            }
+        }
+        else {
+            alert(e.status + ": " + e.errorThrown);
+        }
+    };
+</script>
+<div id="grid"></div>

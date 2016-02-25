@@ -33,5 +33,12 @@ namespace CookBookWebRole.Controllers
 
             return View();
         }
+        
+        public ActionResult RecipesKendo()
+        {
+            ViewBag.Message = "All Recipes in KendoGrid.";
+
+            return View();
+        }
     }
 }
