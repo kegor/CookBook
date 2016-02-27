@@ -15,6 +15,10 @@
             or Web Site.
         </p>
         <p>The application uses SQL Database and Azure storage queues and blobs.</p>
+        <p>It also shows how you can get a list of all recipes using endpoint addresses 
+        of <a target="_blank" href="/api/RecipesWebApi">WebAPI</a> and <a target ="_blank" href="/odata/RecipesOData">OData</a>
+        in XML and JSON formats respectivly.
+        </p>
         <p>To get started choose a category to view or create a Recipe.</p>
         <h2>Choose a category</h2>
         <ul>
@@ -23,7 +27,7 @@
             <li>@Html.ActionLink("Soup", "Index", "Recipe", new { category = (int)Category.Soup }, null)</li>
             <li>@Html.ActionLink("All", "Index", "Recipe", null, null)</li>
         </ul>
-        <h2>Or create a new ad</h2>
+        <h2>Or create a new Recipe</h2>
         <p><a class="btn btn-default" href="@Url.Action("Create", "Recipe")">Create an Recipe</a></p>
     </div>
 </div>

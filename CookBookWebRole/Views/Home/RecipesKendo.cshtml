@@ -4,6 +4,9 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
+<script id="template" type="text/x-kendo-template">
+    <a class="k-button" href="\#" onclick="return toolbar_click()">Refresh</a>
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#grid").kendoGrid({
@@ -11,18 +14,25 @@
                 { field: "Title", width: "80px" },
                 { field: "Calories", width: "100px" },
                 { field: "Description", width: "250px", editor: TextAreaEditor },
-                { field: "AdditionDate", title: "Addition Date", format: "{0:MM/dd/yyyy}", width: "130px" },
-                { field: "Category", width: "110px" },
-                { field: "CookingTime", title: "Cooking Time", width: "140px" },
+                { field: "ThumbnailURL", title: "Thumb", width: "110px", template: '<img src="#=ThumbnailURL#" />' },
+                { field: "AdditionDate", title: "Add. Date", format: "{0:MM/dd/yyyy}", width: "110px" },
+                { field: "Category", width: "110px", editor: CatComboEditor },
+                { field: "CookingTime", title: "Cook Time", width: "110px" },
                 { command: "edit", title: "Edit", width: "90px" },
-                { command: "destroy", title: "Delete", width: "100px" }
+                { command: "destroy", title: "Delete", width: "95px" }
             ],
-            pageable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 3
+            },
             pageSize: 5,
             sortable: true,
             filterable: true,
             editable: "popup",
-            toolbar: ["create"],
+            toolbar: [
+                { template: kendo.template($("#template").html()) }
+            ],
             dataSource: {
                 serverPaging: true,
                 serverFiltering: true,
@@ -48,6 +58,7 @@
                             Title: { type: "string", nullable: false },
                             Calories: { nullable: false, type: "number" },
                             Description: { type: "string" },
+                            ThumbnailURL: { type: "string" },
                             AdditionDate: { type: "date" },
                             Category: { type: "string" },
                             CookingTime: { type: "string" }
@@ -97,9 +108,45 @@
         });
     });
 
-    var TextAreaEditor = function (container, options) {
-        $('<textarea rows=10 cols=25 data-bind="value: ' + options.field + '"></textarea>').appendTo(container);
+    function toolbar_click() {
+        $('#grid').data('kendoGrid').dataSource.read();
+        $('#grid').data('kendoGrid').refresh();
     };
+
+    var TextAreaEditor = function (container, options) {
+        $('<textarea rows=10 cols=35 data-bind="value: ' + options.field + '"></textarea>').appendTo(container);
+    };
+
+    var CatComboEditor = function(container, options) {
+        {
+            $('<input name="' + options.field + '"/>').appendTo(container)
+                .kendoComboBox({
+                    dataSource: new kendo.data.DataSource({
+                        data: [
+                            { Id: "1", title: "Garnish" },
+                            { Id: "2", title: "Salad" },
+                            { Id: "3", title: "Soup" }
+                        ]
+                    }),
+                    dataValueField: "Id",
+                    dataTextField: "title",
+                    autobind: false
+                });
+        }
+    };
+
+    //var ImgEditor = function (container, options) {
+    //    $('<div class="form-group">' +
+    //        '<label class="control-label col-md-2">Thumbnail of current image:</label>' +
+    //        '<div class="col-md-10">' +
+    //            '<img src="' + options.field + '" />' +
+    //        '</div>' +
+    //        '<label class="control-label col-md-2" for="imageFile">New image:</label>' +
+    //        '<div class="col-md-10">' +
+    //            '<input type="file" name="imageFile" accept="image/*" class="form-control fileupload" />' +
+    //        '</div>' +
+    //    '</div>').appendTo(container);
+    //};
 
     function error(e) {
         if (e.errorThrown === "Bad Request") {

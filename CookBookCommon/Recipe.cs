@@ -6,11 +6,11 @@ namespace CookBookCommon
 {
     public enum Category
     {
-        Garnish,
+        Garnish = 1,
         [Display(Name = "Salad")]
-        Salad,
+        Salad = 2,
         [Display(Name = "Soup")]
-        Soup
+        Soup = 3
     }
     public class Recipe
     {
